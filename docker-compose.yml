@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  phpapache:
+    build: ./php
+    ports:
+      - "81:80"
+      - "444:443"
+    depends_on:
+      - mysql
+    volumes:
+      - ./www:/var/www/html
+      - ./php/conf.d/custom.php.ini:/usr/local/etc/php/conf.d/custom.ini
+  mysql:
+    build: ./mysql
+    platform: linux/amd64
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
