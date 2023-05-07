@@ -13,7 +13,6 @@ services:
       - ./php/conf.d/custom.php.ini:/usr/local/etc/php/conf.d/custom.ini
   mysql:
     build: ./mysql
-    platform: linux/amd64
     ports:
       - "3307:3306"
     volumes:
