@@ -3,6 +3,7 @@ version: '3.3'
 services:
   phpapache:
     build: ./php
+    image: phpapache
     ports:
       - "81:80"
       - "444:443"
@@ -13,6 +14,7 @@ services:
       - ./php/conf.d/custom.php.ini:/usr/local/etc/php/conf.d/custom.ini
   mysql:
     build: ./mysql
+    image: mysql
     ports:
       - "3307:3306"
     volumes:
