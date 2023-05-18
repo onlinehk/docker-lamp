@@ -6,11 +6,10 @@ services:
     image: phpapache
     ports:
       - "81:80"
-      - "444:443"
     depends_on:
       - mysql
     volumes:
-      - ./www:/var/www/html
+      - ./php/www:/var/www/html
       - ./php/conf.d/custom.php.ini:/usr/local/etc/php/conf.d/custom.ini
   mysql:
     build: ./mysql
